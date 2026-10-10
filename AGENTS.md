@@ -25,6 +25,37 @@ the macOS simulator are valuable, but they cannot prove every device behavior.
   fits the task; the TV, simulator, FFI, release, and verification workflows have non-obvious
   constraints that generic commands miss.
 
+## Evidence and accuracy policy
+
+- Separate facts from hypotheses and from plans. A design note, roadmap item, simulator output,
+  emulator result, mock server run, or a proposed shell snippet is never the same as a verified
+  production result.
+- Distinguish clearly between:
+  - implemented behavior,
+  - planned or proposed work,
+  - inferred behavior,
+  - simulator or emulator evidence,
+  - physical-device evidence,
+  - documentation-only references.
+- When the answer depends on platform behavior, verify it from primary documentation, vendored
+  source, firmware inventories, or a real device binary before calling it a fact. Do not infer a
+  platform rule from a symbol name, an example app, or a generic web snippet.
+- Never describe a planned Tizen or Samsung target as implemented unless the repo contains a
+  current implementation, a real build artifact, and verification evidence for it.
+- Do not present illustrative commands or config snippets as ready-to-run without labeling them as
+  illustrative or unverified. A file or block that is a proposed example must say so.
+- Say which evidence tier produced each claim: host test, desktop simulator, emulator, or physical
+  TV. A simulator result is never a real-device result.
+- When the repo or the documentation does not provide enough evidence, state the limitation and
+  report the missing fact instead of filling the gap with assumptions.
+- Before writing or editing repository files, explicitly state the intended file(s) and wait for
+  clear confirmation from the user unless the user already asked for the change in the current
+  request.
+- Treat a change as not yet verified until the relevant workload has actually run. “Looks right” is
+  not a verification result.
+- Prefer clear uncertainty over confident guessing. “I could not verify this in the repo” is better
+  than a plausible but unsupported statement.
+
 ## Working rules
 
 - **Trunk-based development, and `main` takes SQUASH merges only.** Work happens on short-lived
